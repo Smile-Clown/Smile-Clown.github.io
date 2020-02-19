@@ -1,23 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>第一篇文章</title>
-    <url>/2020/02/19/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="哈哈"><a href="#哈哈" class="headerlink" title="哈哈"></a>哈哈</h1><h2 id="哈哈-1"><a href="#哈哈-1" class="headerlink" title="哈哈"></a>哈哈</h2><h3 id="哈哈-2"><a href="#哈哈-2" class="headerlink" title="哈哈"></a>哈哈</h3><ol>
-<li>hha <ul>
-<li>列表1</li>
-<li>列表2</li>
+    <title>批处理语法整理</title>
+    <url>/2020/02/19/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<h2 id="1、echo-和"><a href="#1、echo-和" class="headerlink" title="1、echo 和 @"></a>1、echo 和 @</h2><ul>
+<li>@ ：隐藏后面这一行的命令本身（只影响当前行）</li>
+<li>echo off ：屏蔽执行过程</li>
+<li>echo. ：空一行</li>
+<li>echo 任意代码：输出任意代码</li>
 </ul>
-</li>
-<li>asd </li>
-</ol>
-]]></content>
+<h2 id="2、-title"><a href="#2、-title" class="headerlink" title="2、 title"></a>2、 title</h2><ul>
+<li>title ：设置cmd窗口的标题</li>
+</ul>
+<h2 id="3、pause-暂停命令"><a href="#3、pause-暂停命令" class="headerlink" title="3、pause 暂停命令"></a>3、pause 暂停命令</h2><ul>
+<li>pause ： 使批处理暂停</li>
+</ul>
+<h2 id="4、-goto跳转-和-标签区域"><a href="#4、-goto跳转-和-标签区域" class="headerlink" title="4、 goto跳转 和 标签区域"></a>4、 goto跳转 和 标签区域</h2><ul>
+<li>goto label ： 跳转到label区域</li>
+<li>:label ： 表示下面代码属于label标签区域。</li>
+</ul>
+<h2 id="5、set-设置变量"><a href="#5、set-设置变量" class="headerlink" title="5、set 设置变量"></a>5、set 设置变量</h2><ul>
+<li>set 变量名 = 变量值</li>
+<li>echo = %变量名%： 引用变量 </li>
+<li>/P 命令行开关允许将变量数值设成用户输入的一行输入</li>
+<li>/A 命令行开关指定等号右边的字符串为被评估的数字表达式</li>
+</ul>
+<p>例：</p>
+<pre><code>set /p p=请输入    
+set /a rrr=%p%+3
+echo %rrr%
+
+请输入5
+8</code></pre><ul>
+<li>变量在if 、for 复合语句里是一次性全部替换的，可以启用“延缓环境变量扩充”，用！来引用变量，即  ！变量名！</li>
+</ul>
+<p>例：</p>
+<pre><code>SETLOCAL ENABLEDELAYEDEXPANSION
+set p=aaa
+if %p%==aaa (
+    echo %p%
+    set p=bbb
+    echo %p%
+    echo !p!
+)      
+echo %p%
+ENDLOCAL</code></pre><ul>
+<li>if 语句</li>
+</ul>
+<p>例：</p>
+<pre><code>set /p p=请输入
+if %p% LEQ 9 (
+echo %p%
+) else (
+echo 9
+)</code></pre><p>&nbsp;中文含义&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关系符&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;英文解释</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;等于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;equal</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;大于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gtr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;greater than</p>
+<p>&nbsp;大于等于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;geq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;greater than or equal</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;小于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lss&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;less than</p>
+<p>&nbsp;小于等于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;less than or equal</p>
+<p>&nbsp;&nbsp;&nbsp;不等于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;neq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no equal</p>
+<p>判断路径是否存在：</p>
+<pre><code>if exist %cd%\test.LOG (
+    echo 存在！
+)
+
+if not exist %cd%\test.LOG (
+echo 不存在！
+)</code></pre>]]></content>
       <categories>
-        <category>测试</category>
+        <category>网络安全</category>
       </categories>
       <tags>
-        <tag>导航</tag>
-        <tag>分享</tag>
+        <tag>批处理</tag>
       </tags>
   </entry>
 </search>
