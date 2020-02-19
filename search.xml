@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>批处理语法整理</title>
+    <title>批处理语法整理(不间断更新)</title>
     <url>/2020/02/19/%E6%89%B9%E5%A4%84%E7%90%86%E8%AF%AD%E6%B3%95%E6%95%B4%E7%90%86/</url>
     <content><![CDATA[<h2 id="1、echo-和"><a href="#1、echo-和" class="headerlink" title="1、echo 和 @"></a>1、echo 和 @</h2><ul>
 <li>@ ：隐藏后面这一行的命令本身（只影响当前行）</li>
@@ -74,5 +74,22 @@ echo 不存在！
       <tags>
         <tag>批处理</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>关于我</title>
+    <url>/2020/02/19/%E5%85%B3%E4%BA%8E%E6%88%91/</url>
+    <content><![CDATA[<hr>
+<pre><code>    之前呢，在学习计算机的过程中，没有怎么记录自己的学习过程
+，换个电脑，刷个系统，自己的东西就都没有了，所以自己搭了一博
+客，算是记录自己的学习经历，学习过程。
+
+    目前大二，就读于南京一所普通本科，由于学校没有信息安全想
+关专业，所以只能选择了一个与信息安全靠近一点的网路工程专业。
+
+    此时此刻，建立这个博客，只是想自己能够不荒废青春，能够变
+得更好，记录成长的点滴。
+
+希望自己，有所得。</code></pre><hr>
+]]></content>
   </entry>
 </search>
