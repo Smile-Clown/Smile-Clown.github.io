@@ -5,19 +5,42 @@
     <url>/2020/03/25/JSP%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="JSP笔记-知识点"><a href="#JSP笔记-知识点" class="headerlink" title="JSP笔记(知识点)"></a>JSP笔记(知识点)</h1><h3 id="基础部分"><a href="#基础部分" class="headerlink" title="基础部分"></a>基础部分</h3><h6 id="JSP九大内置对象"><a href="#JSP九大内置对象" class="headerlink" title="JSP九大内置对象:"></a>JSP九大内置对象:</h6><ol>
 <li><blockquote>
-<pre><code>out:输出对象，像客户端输出内容。</code></pre></blockquote>
+<p>out：输出对象，像客户端输出内容。</p>
+</blockquote>
 </li>
 <li><blockquote>
-<pre><code>request:请求对象；存储“客户端向服务端发送的请求信息”
-/*  
-    request对象的常用方法：
-    1、getParameter(String name) :根据请求的字段名，返回字段值(String类型);
-    2、getParameterValues(String name) :返回的是String类型数组(String []),通常用与CheckBox;
-    3、setCharacterEncoding(&quot;填写编码格式 例：UTF-8&quot;) :(返回值为Void)，设置请求编码，不设置即发送默认编码(Tomcat7之前为iso-8859-7，Tomcat8以后为utf-8);
-    4、getRequestDispatcher(&quot;某某.jsp&quot;).forward(request,response) :请求转发的方式跳转页面   从当前页面跳转到  某某.jsp;
-    5、getServerContext() :获取项目的ServletContext对象
-*/</code></pre><blockquote>
-<h6 id="例子1-1：注册-register-jsp-amp-show-jsp-用register-jsp注册然后show-jsp展示出来"><a href="#例子1-1：注册-register-jsp-amp-show-jsp-用register-jsp注册然后show-jsp展示出来" class="headerlink" title="例子1-1：注册(register.jsp &amp; show.jsp):用register.jsp注册然后show.jsp展示出来"></a>例子1-1：注册(register.jsp &amp; show.jsp):用register.jsp注册然后show.jsp展示出来</h6><pre><code>核心代码：</code></pre></blockquote>
+<p>request：请求对象；存储“客户端向服务端发送的请求信息” </p>
+<p>  /*</p>
+<p>   request对象的常用方法：</p>
+<p>   &emsp;&emsp;1、getParameter(String name) :根据请求的字段名(name的值)，返回字段值(value的值)(String类型);</p>
+<p>   &emsp;&emsp;2、getParameterValues(String name) :返回的是String类型数组(String []),通常用与CheckBox;</p>
+<p>   &emsp;&emsp;3、setCharacterEncoding(“填写编码格式 例：UTF-8”) :(返回值为Void)，设置post方式的请求编码，不设置即发送默认编码(Tomcat7之前为iso-8859-7,Tomcat8以后为utf-8);</p>
+<p>   &emsp;&emsp;4、getRequestDispatcher(“某某.jsp”).forward(request,response) :请求转发的方式跳转页面   从当前页面跳转到  某某.jsp;</p>
+<p>   &emsp;&emsp;5、getServerContext() :获取项目的ServletContext对象</p>
+<p>  */</p>
+<blockquote>
+<h6 id="例子1-1：注册-register-jsp-amp-show-jsp-用register-jsp注册然后show-jsp展示出来"><a href="#例子1-1：注册-register-jsp-amp-show-jsp-用register-jsp注册然后show-jsp展示出来" class="headerlink" title="例子1-1：注册(register.jsp &amp; show.jsp):用register.jsp注册然后show.jsp展示出来"></a>例子1-1：注册(register.jsp &amp; show.jsp):用register.jsp注册然后show.jsp展示出来</h6><p>   “<a href="http://localhost:8080/JavaWeb/JavaWeb/1-1/show.jsp?uname=admin&amp;upwd=123&amp;uage=21&amp;uhobbies=%E7%AF%AE%E7%90%83”" target="_blank" rel="noopener">http://localhost:8080/JavaWeb/JavaWeb/1-1/show.jsp?uname=admin&amp;upwd=123&amp;uage=21&amp;uhobbies=%E7%AF%AE%E7%90%83”</a>  </p>
+<pre><code>连接端口号/           文件             ?  参数名1=参数值1 &amp; 参数名2=参数值2 &amp; 参数名3=参数值3  </code></pre><p>   get提交方式：method=”get” 和 上面这个地址栏、超链接(“&lt;”a href = “xxx””&gt;”) 请求方式 默认都属于get提交方式。  </p>
+<p>   get和post请求方式的区别：<br>   &emsp;&emsp;a. get方式 在地址栏显示 请求信息(但是地址栏 容纳的 信息 有限 ，4–5KB;) ; post 不会显示<br>   &emsp;&emsp;b. 文件上传操作必须是post  </p>
+<p>   &emsp;&emsp;通常推荐使用：post方式  </p>
+<p>   统一请求的编码 request  &emsp;&emsp;&emsp;拓展（Tomcat7默认编码（iso-8859-1），Tomcat8以上默认为（utf-8）） </p>
+<p>   get方式请求，如果出现乱码，解决方法：     </p>
+<p>   &emsp;&emsp;a. 统一每一个变量的编码(比较傻，一个一个变量改)<br>   &emsp;&emsp;xxx = new String(旧编码，新编码);<br>   &emsp;&emsp;name = new String(name.getBytes(“iso-8859-1”),”utf-8”);  </p>
+<p>   &emsp;&emsp;b. 修改server.xml，一次性的 更改tomcat默认get提交方式的编码。   </p>
+<p>   Post方式请求，如果出现乱码，解决方法：</p>
+<p>   &emsp;&emsp;request.setCharacterEncoding(“utf-8);  </p>
+</blockquote>
+</blockquote>
+</li>
+<li><blockquote>
+<p>response：响应对象;<br>/*<br> 提供的方法：<br> &emsp;&emsp;1、void addCookie( Cookie cookie ); ：服务端向客户端增加一个Cookie对象<br> &emsp;&emsp;2、void sendRedirect(“a.jsp”) throw IOException; ：页面跳转的一种方式 （重定向）<br> &emsp;&emsp;3、void setContentType( String type ); ：设置服务端响应的编码（设置服务端的ContentType类型）<br>*/  </p>
+<blockquote>
+<h6 id="例子1-2：登录-login-jsp-–-gt-check-jsp-–-gt-success-jsp"><a href="#例子1-2：登录-login-jsp-–-gt-check-jsp-–-gt-success-jsp" class="headerlink" title="例子1-2：登录(login.jsp –&gt; check.jsp –&gt; success.jsp)"></a>例子1-2：登录(login.jsp –&gt; check.jsp –&gt; success.jsp)</h6><h6 id="请求转发、重定向区别"><a href="#请求转发、重定向区别" class="headerlink" title="请求转发、重定向区别"></a>请求转发、重定向区别</h6><p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;请求转发&emsp;&emsp;&emsp;&emsp;重定向<br>地址栏是否改变&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;不变&emsp;&emsp;&emsp;&emsp;&emsp;改变<br>是否保留第一次请求时的数据&emsp;&emsp;&emsp;&emsp;保留&emsp;&emsp;&emsp;&emsp;&emsp;不保留<br>请求的次数&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;1&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2<br>跳转发生的位置&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;服务端&emsp;&emsp;&emsp;&emsp;&emsp;客户端    </p>
+</blockquote>
+</blockquote>
+</li>
+<li><blockquote>
+<p>session(存在于服务端)<br>Cookie(存在于客户端，不是内置对象)：Cookie是由 服务端 产生的，再发给客户端保存  </p>
 </blockquote>
 </li>
 </ol>
